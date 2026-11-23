@@ -8,7 +8,7 @@ const WHATSAPP_HREF = 'https://wa.me/254797624927';
 const CALL_DISPLAY = '0768 875 601';
 const CALL_HREF = 'tel:+254768875601';
 const DIRECTIONS_HREF =
-  'https://www.google.com/maps/dir/?api=1&destination=-1.2833477,36.9708714';
+  'https://www.google.com/maps/place/yabanks+locs+%26+beauty+studio/@-1.2833423,36.9682965,17z/data=!3m1!4b1!4m6!3m5!1s0x182f6ca37a8f356f:0x8ea675f2f3b14121!8m2!3d-1.2833477!4d36.9708714!16s%2Fg%2F11pdn519zf';
 
 const OPENING_HOURS = [
   { days: 'Monday to Friday', hours: '8 am to 9 pm' },

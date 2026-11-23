@@ -1,10 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import barrelRollImg from '../assets/samples/barrel-roll-updo.svg';
-import classicFauxImg from '../assets/samples/classic-faux-locs.svg';
-import honeyTippedImg from '../assets/samples/honey-tipped-locs.svg';
-import instantLocsImg from '../assets/samples/instant-locs-ends.svg';
-import retouchPartingImg from '../assets/samples/retouch-square-parting.svg';
-import sisterMicroImg from '../assets/samples/sister-micro-locs.svg';
 import { Section } from './LayoutPrimitives';
 
 interface WorkSample {
@@ -13,35 +7,38 @@ interface WorkSample {
   alt: string;
 }
 
+const sampleUrl = (filename: string) =>
+  `${import.meta.env.BASE_URL}samples/${filename}`;
+
 const WORK_SAMPLES: WorkSample[] = [
   {
     id: 'retouch-parting',
-    src: retouchPartingImg,
+    src: sampleUrl('retouch-square-parting.svg'),
     alt: 'Freshly retouched medium locs with neat square parting',
   },
   {
     id: 'barrel-updo',
-    src: barrelRollImg,
+    src: sampleUrl('barrel-roll-updo.svg'),
     alt: 'Sculpted barrel roll updo styled on mature locs',
   },
   {
     id: 'instant-locs',
-    src: instantLocsImg,
+    src: sampleUrl('instant-locs-ends.svg'),
     alt: 'Fresh artificial instant locs installed with tapered ends',
   },
   {
     id: 'classic-faux',
-    src: classicFauxImg,
+    src: sampleUrl('classic-faux-locs.svg'),
     alt: 'Long classic temporary faux locs in natural black',
   },
   {
     id: 'sister-micro',
-    src: sisterMicroImg,
+    src: sampleUrl('sister-micro-locs.svg'),
     alt: 'Finely parted micro locs and sister locs with centre part',
   },
   {
     id: 'honey-colour',
-    src: honeyTippedImg,
+    src: sampleUrl('honey-tipped-locs.svg'),
     alt: 'Medium locs with warm honey-gold coloured tips',
   },
 ];

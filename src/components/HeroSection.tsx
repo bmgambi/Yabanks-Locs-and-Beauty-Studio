@@ -8,7 +8,7 @@ const WHATSAPP_HREF = 'https://wa.me/254797624927';
 const CALL_DISPLAY = '0768 875 601';
 const CALL_HREF = 'tel:+254768875601';
 const DIRECTIONS_HREF =
-  'https://www.google.com/maps/search/?api=1&query=Fagilia+Utawala+Nairobi+ACK+St+Monica';
+  'https://www.google.com/maps/dir/?api=1&destination=-1.2833477,36.9708714';
 
 function getNairobiOpenStatus(): { isOpen: boolean; summary: string } {
   try {

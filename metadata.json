@@ -1,0 +1,6 @@
+{
+  "name": "Yabanks Locs & Beauty Studio",
+  "description": "Locs & beauty studio in Utawala, Nairobi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

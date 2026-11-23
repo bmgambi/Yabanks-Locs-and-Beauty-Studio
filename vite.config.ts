@@ -4,6 +4,16 @@ import fs from 'fs';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  base: '/repo-name/',
+  plugins: [react()],
+  // keep everything else as it was
+})
+
+
 export default defineConfig(() => {
   return {
     base: './',

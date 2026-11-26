@@ -24,7 +24,7 @@ function getVariantClasses(variant: ButtonVariant, surface: SurfaceContext): str
     if (surface === 'light') {
       return `${base} bg-ink text-white px-6 hover:bg-[#262522] active:bg-[#000000]`;
     }
-    return `${base} bg-ink text-white hover:bg-[#262522] dark:bg-gold dark:text-ink dark:hover:bg-[#D5B263] px-6`;
+    return `${base} bg-ink text-white hover:bg-[#262522] px-6`;
   }
 
   if (variant === 'secondary') {
@@ -34,7 +34,7 @@ function getVariantClasses(variant: ButtonVariant, surface: SurfaceContext): str
     if (surface === 'light') {
       return `${base} border border-[#8D887C] text-text bg-transparent px-6 hover:border-ink`;
     }
-    return `${base} border border-[#8D887C] text-text bg-transparent px-6 hover:border-ink dark:border-[#5B5850] dark:text-dark-text dark:hover:border-gold dark:hover:text-gold`;
+    return `${base} border border-[#8D887C] text-text bg-transparent px-6 hover:border-ink`;
   }
 
   // Tertiary text link
@@ -44,7 +44,7 @@ function getVariantClasses(variant: ButtonVariant, surface: SurfaceContext): str
   if (surface === 'light') {
     return `${base} px-2 text-deep-gold underline-offset-4 hover:underline`;
   }
-  return `${base} px-2 text-deep-gold dark:text-gold underline-offset-4 hover:underline`;
+  return `${base} px-2 text-deep-gold underline-offset-4 hover:underline`;
 }
 
 export function Button({

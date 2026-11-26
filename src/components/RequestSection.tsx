@@ -1,21 +1,15 @@
 import { AlertCircle } from 'lucide-react';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import type { VisitOption } from '../App';
+import { SERVICE_GROUPS } from '../data/services';
+import { buildWhatsAppUrl } from '../lib/whatsapp';
 import { Button } from './Button';
 import { Section } from './LayoutPrimitives';
 
 const SERVICE_OPTIONS = [
-  'Retouch and maintenance',
-  'Fresh locs',
-  'Classic temporary locs',
-  'Sister locs',
-  'Colour',
-  'Removal',
-  'Makeup, nails, pedicure or braiding',
+  ...SERVICE_GROUPS.map((group) => group.title),
   'Not sure yet, advise me',
 ] as const;
-
-const WHATSAPP_NUMBER = '254797624927';
 
 export interface RequestFormValues {
   name: string;
@@ -85,7 +79,7 @@ export function buildWhatsAppRequestUrl(
   visit: VisitOption,
 ): string {
   const message = buildWhatsAppRequestMessage(formValues, visit);
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return buildWhatsAppUrl('form', { message });
 }
 
 export function RequestSection({
@@ -221,24 +215,24 @@ export function RequestSection({
   }
 
   const inputBaseClass =
-    'w-full min-h-[52px] rounded-[6px] border bg-white px-4 py-3 font-body text-[16px] text-text placeholder:text-muted/80 dark:bg-[#1E1E1E] dark:text-dark-text dark:placeholder:text-dark-muted/80';
-  const inputNormalBorder = 'border-[#8D887C] dark:border-[#5B5850]';
-  const inputErrorBorder = 'border-[#9F1D1D] dark:border-[#F87171]';
+    'w-full min-h-[52px] rounded-[6px] border bg-white px-4 py-3 font-body text-[16px] text-text placeholder:text-muted/80';
+  const inputNormalBorder = 'border-[#8D887C]';
+  const inputErrorBorder = 'border-[#9F1D1D]';
   const errorTextClass =
-    'mt-2 flex items-start gap-2 font-body text-[14px] font-semibold leading-snug text-[#9F1D1D] dark:text-[#F87171]';
+    'mt-2 flex items-start gap-2 font-body text-[14px] font-semibold leading-snug text-[#9F1D1D]';
 
   return (
     <Section
       id="request-form"
       surface="white"
       ariaLabel="Send a request"
-      className="border-t border-line dark:border-dark-line"
+      className="border-t border-line"
     >
       <div className="max-w-[560px]">
-        <h2 className="font-heading text-[28px] font-bold leading-[1.2] tracking-[-0.01em] text-text dark:text-dark-text sm:text-[36px]">
+        <h2 className="font-heading text-[28px] font-bold leading-[1.2] tracking-[-0.01em] text-text sm:text-[36px]">
           Send a request
         </h2>
-        <p className="mt-3 font-body text-[16px] leading-[1.6] text-muted dark:text-dark-muted">
+        <p className="mt-3 font-body text-[16px] leading-[1.6] text-muted">
           Tell us the service and timing you have in mind, and we will reply to confirm availability.
         </p>
 
@@ -247,7 +241,7 @@ export function RequestSection({
           <div>
             <label
               htmlFor="request-name"
-              className="mb-2 block font-body text-[15px] font-semibold text-text dark:text-dark-text"
+              className="mb-2 block font-body text-[15px] font-semibold text-text"
             >
               Name
             </label>
@@ -276,7 +270,7 @@ export function RequestSection({
           <div>
             <label
               htmlFor="request-phone"
-              className="mb-2 block font-body text-[15px] font-semibold text-text dark:text-dark-text"
+              className="mb-2 block font-body text-[15px] font-semibold text-text"
             >
               Phone
             </label>
@@ -308,7 +302,7 @@ export function RequestSection({
           <div>
             <label
               htmlFor="request-service"
-              className="mb-2 block font-body text-[15px] font-semibold text-text dark:text-dark-text"
+              className="mb-2 block font-body text-[15px] font-semibold text-text"
             >
               Service
             </label>
@@ -343,7 +337,7 @@ export function RequestSection({
           <div>
             <label
               htmlFor="request-preferred-time"
-              className="mb-2 block font-body text-[15px] font-semibold text-text dark:text-dark-text"
+              className="mb-2 block font-body text-[15px] font-semibold text-text"
             >
               Preferred day and time
             </label>
@@ -366,7 +360,7 @@ export function RequestSection({
 
             <label
               htmlFor="request-flexible"
-              className="mt-3 inline-flex min-h-[44px] cursor-pointer items-center gap-3 font-body text-[15px] text-text dark:text-dark-text"
+              className="mt-3 inline-flex min-h-[44px] cursor-pointer items-center gap-3 font-body text-[15px] text-text"
             >
               <input
                 id="request-flexible"
@@ -384,7 +378,7 @@ export function RequestSection({
                     });
                   }
                 }}
-                className="h-5 w-5 shrink-0 cursor-pointer rounded-[4px] border border-[#8D887C] accent-ink dark:border-[#5B5850] dark:accent-gold"
+                className="h-5 w-5 shrink-0 cursor-pointer rounded-[4px] border border-[#8D887C] accent-ink"
               />
               <span>I&apos;m flexible</span>
             </label>
@@ -399,11 +393,11 @@ export function RequestSection({
 
           {/* Home visit? radio */}
           <fieldset className="m-0 border-0 p-0">
-            <legend className="mb-2 font-body text-[15px] font-semibold text-text dark:text-dark-text">
+            <legend className="mb-2 font-body text-[15px] font-semibold text-text">
               Home visit?
             </legend>
             <div className="flex flex-col gap-2 sm:flex-row sm:gap-6">
-              <label className="inline-flex min-h-[48px] cursor-pointer items-center gap-3 font-body text-[15px] text-text dark:text-dark-text">
+              <label className="inline-flex min-h-[48px] cursor-pointer items-center gap-3 font-body text-[15px] text-text">
                 <input
                   type="radio"
                   name="homeVisit"
@@ -418,19 +412,19 @@ export function RequestSection({
                       return next;
                     });
                   }}
-                  className="h-5 w-5 shrink-0 cursor-pointer accent-ink dark:accent-gold"
+                  className="h-5 w-5 shrink-0 cursor-pointer accent-ink"
                 />
                 <span>No</span>
               </label>
 
-              <label className="inline-flex min-h-[48px] cursor-pointer items-center gap-3 font-body text-[15px] text-text dark:text-dark-text">
+              <label className="inline-flex min-h-[48px] cursor-pointer items-center gap-3 font-body text-[15px] text-text">
                 <input
                   type="radio"
                   name="homeVisit"
                   value="Yes, come to me"
                   checked={visitOption === 'Yes, come to me'}
                   onChange={() => onVisitOptionChange('Yes, come to me')}
-                  className="h-5 w-5 shrink-0 cursor-pointer accent-ink dark:accent-gold"
+                  className="h-5 w-5 shrink-0 cursor-pointer accent-ink"
                 />
                 <span>Yes, come to me</span>
               </label>
@@ -442,7 +436,7 @@ export function RequestSection({
             <div>
               <label
                 htmlFor="request-area"
-                className="mb-2 block font-body text-[15px] font-semibold text-text dark:text-dark-text"
+                className="mb-2 block font-body text-[15px] font-semibold text-text"
               >
                 Area
               </label>
@@ -474,7 +468,7 @@ export function RequestSection({
           <div>
             <label
               htmlFor="request-notes"
-              className="mb-2 block font-body text-[15px] font-semibold text-text dark:text-dark-text"
+              className="mb-2 block font-body text-[15px] font-semibold text-text"
             >
               Notes (optional)
             </label>
@@ -485,7 +479,7 @@ export function RequestSection({
               value={values.notes}
               onChange={(e) => updateField('notes', e.target.value)}
               placeholder="Share your hair length, style ideas or questions"
-              className={`w-full min-h-[112px] rounded-[6px] border bg-white px-4 py-3 font-body text-[16px] text-text placeholder:text-muted/80 dark:bg-[#1E1E1E] dark:text-dark-text dark:placeholder:text-dark-muted/80 ${inputNormalBorder}`}
+              className={`w-full min-h-[112px] rounded-[6px] border bg-white px-4 py-3 font-body text-[16px] text-text placeholder:text-muted/80 ${inputNormalBorder}`}
             />
           </div>
 
@@ -501,11 +495,11 @@ export function RequestSection({
                 onChange={(e) => updateField('consent', e.target.checked)}
                 aria-invalid={Boolean(errors.consent)}
                 aria-describedby={errors.consent ? 'error-consent' : undefined}
-                className="mt-1 h-5 w-5 shrink-0 cursor-pointer rounded-[4px] border border-[#8D887C] accent-ink dark:border-[#5B5850] dark:accent-gold"
+                className="mt-1 h-5 w-5 shrink-0 cursor-pointer rounded-[4px] border border-[#8D887C] accent-ink"
               />
               <label
                 htmlFor="request-consent"
-                className="cursor-pointer font-body text-[14px] leading-[1.6] text-text dark:text-dark-text"
+                className="cursor-pointer font-body text-[14px] leading-[1.6] text-text"
               >
                 I agree that Yabanks may use these details to reply to my request.{' '}
                 <a
@@ -516,7 +510,7 @@ export function RequestSection({
                   }}
                   aria-expanded={showPrivacyNotice}
                   aria-controls="privacy-notice-details"
-                  className="font-semibold text-deep-gold underline underline-offset-4 hover:text-ink dark:text-gold dark:hover:text-dark-text"
+                  className="font-semibold text-deep-gold underline underline-offset-4 hover:text-ink"
                 >
                   Privacy notice
                 </a>
@@ -526,7 +520,7 @@ export function RequestSection({
             {showPrivacyNotice && (
               <div
                 id="privacy-notice-details"
-                className="mt-3 rounded-[6px] border border-line bg-paper p-4 font-body text-[14px] leading-[1.6] text-muted dark:border-dark-line dark:bg-[#1E1E1E] dark:text-dark-muted"
+                className="mt-3 rounded-[6px] border border-line bg-paper p-4 font-body text-[14px] leading-[1.6] text-muted"
               >
                 We only use your name, phone number and request details to reply to you about your
                 visit or home service. Your details are not stored on a server or shared for
@@ -543,7 +537,7 @@ export function RequestSection({
           </div>
 
           <div className="flex flex-col items-start gap-3">
-            <p className="font-body text-[14px] leading-[1.5] text-muted dark:text-dark-muted">
+            <p className="font-body text-[14px] leading-[1.5] text-muted">
               This opens WhatsApp with your message ready. Tap send there to complete your request.
             </p>
             <div data-cta-group="primary" className="w-full sm:w-auto">
@@ -560,14 +554,14 @@ export function RequestSection({
               <p
                 role="status"
                 aria-live="polite"
-                className="font-body text-[14px] leading-[1.5] text-text dark:text-dark-text"
+                className="font-body text-[14px] leading-[1.5] text-text"
               >
                 If WhatsApp did not open,{' '}
                 <a
                   href={pendingWhatsAppUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-deep-gold underline underline-offset-4 hover:text-ink dark:text-gold dark:hover:text-dark-text"
+                  className="font-semibold text-deep-gold underline underline-offset-4 hover:text-ink"
                 >
                   open your pre-filled WhatsApp message here
                 </a>

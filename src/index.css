@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-ink: #111111;
@@ -29,17 +28,6 @@
   --ink-muted: #5B5850;
   --ink-line: #DAD6CB;
   --accent-on-light: #8A6A1E;
-  --accent-on-dark: #C9A24B;
-}
-
-.dark {
-  --surface-canvas: #171717;
-  --surface-elevated: #1E1E1E;
-  --surface-ink: #111111;
-  --ink-text: #F2F0EA;
-  --ink-muted: #B6B1A4;
-  --ink-line: #2E2D29;
-  --accent-on-light: #C9A24B;
   --accent-on-dark: #C9A24B;
 }
 

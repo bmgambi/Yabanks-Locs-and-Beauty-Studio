@@ -24,8 +24,8 @@ interface SectionProps {
 }
 
 const surfaceClasses: Record<SectionSurface, string> = {
-  canvas: 'bg-paper text-text dark:bg-dark-surface dark:text-dark-text',
-  white: 'bg-white text-text dark:bg-dark-surface dark:text-dark-text',
+  canvas: 'bg-paper text-text',
+  white: 'bg-white text-text',
   dark: 'bg-ink text-dark-text',
 };
 
@@ -54,9 +54,6 @@ export function Hairline({
   surface?: 'light' | 'dark';
   className?: string;
 }) {
-  const borderClass =
-    surface === 'dark'
-      ? 'border-dark-line'
-      : 'border-line dark:border-dark-line';
+  const borderClass = surface === 'dark' ? 'border-dark-line' : 'border-line';
   return <hr className={`border-0 border-t ${borderClass} ${className}`} />;
 }

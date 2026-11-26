@@ -1,8 +1,9 @@
 import { MessageCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { buildWhatsAppUrl } from '../lib/whatsapp';
 import { LinkButton } from './Button';
 
-const WHATSAPP_HREF = 'https://wa.me/254797624927';
+const WHATSAPP_HREF = buildWhatsAppUrl('action-bar');
 const CALL_HREF = 'tel:+254768875601';
 
 export function MobileActionBar() {

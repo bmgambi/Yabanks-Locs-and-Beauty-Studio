@@ -104,7 +104,7 @@ function WorkSampleCard({ sample }: { sample: WorkSample }) {
     <figure className="group m-0 flex flex-col gap-2">
       <div
         ref={frameRef}
-        className={`aspect-[4/5] w-full overflow-hidden rounded-[6px] border border-line bg-paper transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] dark:border-dark-line dark:bg-[#1E1E1E] md:group-hover:scale-[1.02] md:group-hover:border-deep-gold dark:md:group-hover:border-gold ${
+        className={`aspect-[4/5] w-full overflow-hidden rounded-[6px] border border-line bg-paper transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] md:group-hover:scale-[1.02] md:group-hover:border-deep-gold ${
           isMobileZoomed ? 'scale-[1.02] md:scale-100' : 'scale-100'
         }`}
       >
@@ -112,7 +112,7 @@ function WorkSampleCard({ sample }: { sample: WorkSample }) {
           <div
             role="img"
             aria-label={sample.alt}
-            className="flex h-full w-full items-center justify-center p-4 text-center font-body text-[13px] text-muted dark:text-dark-muted"
+            className="flex h-full w-full items-center justify-center p-4 text-center font-body text-[13px] text-muted"
           >
             {sample.alt}
           </div>
@@ -132,7 +132,7 @@ function WorkSampleCard({ sample }: { sample: WorkSample }) {
           />
         )}
       </div>
-      <figcaption className="font-body text-[13px] leading-snug text-muted dark:text-dark-muted">
+      <figcaption className="font-body text-[13px] leading-snug text-muted">
         Sample image
       </figcaption>
     </figure>
@@ -145,10 +145,10 @@ export function OurWorkSection() {
       id="our-work"
       surface="white"
       ariaLabel="Our work"
-      className="border-t border-line dark:border-dark-line"
+      className="border-t border-line"
     >
       <div className="max-w-[68ch]">
-        <h2 className="font-heading text-[28px] font-bold leading-[1.2] tracking-[-0.01em] text-text dark:text-dark-text sm:text-[36px]">
+        <h2 className="font-heading text-[28px] font-bold leading-[1.2] tracking-[-0.01em] text-text sm:text-[36px]">
           Our work
         </h2>
       </div>

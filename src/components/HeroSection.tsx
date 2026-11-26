@@ -1,56 +1,17 @@
 import { MessageCircle } from 'lucide-react';
+import { getNairobiOpenStatus } from '../data/hours';
+import { buildWhatsAppUrl } from '../lib/whatsapp';
 import { LinkButton } from './Button';
 import { Section } from './LayoutPrimitives';
 
 const STUDIO_ADDRESS = 'Fagilia, Utawala, Nairobi, opposite ACK St Monica';
 const WHATSAPP_DISPLAY = '0797 624 927';
-const WHATSAPP_HREF = 'https://wa.me/254797624927';
+const HERO_WHATSAPP_HREF = buildWhatsAppUrl('hero');
+const VISIT_US_WHATSAPP_HREF = buildWhatsAppUrl('visit-us');
 const CALL_DISPLAY = '0768 875 601';
 const CALL_HREF = 'tel:+254768875601';
 const DIRECTIONS_HREF =
   'https://www.google.com/maps/place/yabanks+locs+%26+beauty+studio/@-1.2833423,36.9682965,17z/data=!3m1!4b1!4m6!3m5!1s0x182f6ca37a8f356f:0x8ea675f2f3b14121!8m2!3d-1.2833477!4d36.9708714!16s%2Fg%2F11pdn519zf';
-
-function getNairobiOpenStatus(): { isOpen: boolean; summary: string } {
-  try {
-    const now = new Date();
-    const parts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Africa/Nairobi',
-      weekday: 'short',
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: false,
-    }).formatToParts(now);
-
-    const weekday = parts.find((p) => p.type === 'weekday')?.value ?? 'Mon';
-    const hour = Number.parseInt(parts.find((p) => p.type === 'hour')?.value ?? '12', 10);
-    const minute = Number.parseInt(parts.find((p) => p.type === 'minute')?.value ?? '0', 10);
-    const currentMinutes = hour * 60 + minute;
-
-    if (weekday === 'Fri') {
-      const isOpen = currentMinutes >= 8 * 60 && currentMinutes < 20 * 60 + 30;
-      return {
-        isOpen,
-        summary: isOpen ? 'Open today · 8 am to 8:30 pm' : 'Closed now · Fri 8 am to 8:30 pm',
-      };
-    }
-
-    if (weekday === 'Sat') {
-      const isOpen = currentMinutes >= 9 * 60 && currentMinutes < 20 * 60;
-      return {
-        isOpen,
-        summary: isOpen ? 'Open today · 9 am to 8 pm' : 'Closed now · Sat 9 am to 8 pm',
-      };
-    }
-
-    const isOpen = currentMinutes >= 7 * 60 + 30 && currentMinutes < 21 * 60;
-    return {
-      isOpen,
-      summary: isOpen ? 'Open today · 7:30 am to 9 pm' : 'Closed now · 7:30 am to 9 pm',
-    };
-  } catch {
-    return { isOpen: true, summary: 'Open seven days a week' };
-  }
-}
 
 export function HeroSection() {
   const status = getNairobiOpenStatus();
@@ -75,7 +36,7 @@ export function HeroSection() {
             <LinkButton
               variant="primary"
               surface="dark"
-              href={WHATSAPP_HREF}
+              href={HERO_WHATSAPP_HREF}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
@@ -138,7 +99,7 @@ export function HeroSection() {
               </dt>
               <dd className="mt-1 font-body text-[15px] leading-[1.5] tabular-nums">
                 <a
-                  href={WHATSAPP_HREF}
+                  href={VISIT_US_WHATSAPP_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block rounded-[4px] font-semibold text-gold underline-offset-4 hover:underline"

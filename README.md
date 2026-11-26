@@ -29,3 +29,10 @@ This repository includes `.github/workflows/deploy.yml`, which automatically bui
    ```bash
    VITE_BASE_PATH="/YOUR-REPO-NAME/" npm run build
    ```
+
+## WhatsApp links
+
+All WhatsApp links are built by `buildWhatsAppUrl(source, options?)` in `src/lib/whatsapp.ts` using `254797624927`. Each link includes a URL-encoded pre-filled message followed by a blank line and a plain-text source tag (`Ref: <source>`).
+
+Allowed sources: `hero`, `action-bar`, `prices`, `gallery`, `home-visit`, `faq`, `visit-us`, `form`.
+
